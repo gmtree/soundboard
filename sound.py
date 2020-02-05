@@ -12,6 +12,7 @@ FPS = 30
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 DARKTURQUOISE = (3, 54, 73)
+BURNTORANGE = (80, 33, 0)
 
 BGCOLOR = DARKTURQUOISE
 
@@ -20,8 +21,11 @@ BASICFONTSIZE = 14
 TEXTBGCOLOR = WHITE
 TEXTCOLOR = BLACK
 
-CTRL_BGCOLOR = WHITE
-CTRL_TEXTCOLOR = BLACK
+CTRL_BGCOLOR = BLACK
+CTRL_TEXTCOLOR = WHITE
+
+# BUTTONHEIGHT = 40
+# BUTTONWIDTH = 40
 
 # margins for the spacing of the area for the sound controllers
 XMARGIN = 50
@@ -36,7 +40,7 @@ PLAYERWIDTH = 300
 PLAYERHEIGHT = 40
 
 # sample list of 3 sounds
-sound_list = ['sound0.wav', 'sound1.wav', 'sound2.wav']
+sound_list = ['sound0.wav', 'sound1.wav', 'sound2.wav', 'sound3.wav', 'sound4.wav', 'sound5.wav']
 
 ### sound area code
 
@@ -158,16 +162,18 @@ def drawSoundCtrlRect(ctrlNumX, ctrlNumY, adjx = 0, adjy = 0):
 def drawSoundPlayerGrid():
 
 	# TODO
-	# create a grid of SoundCtrlRects based on the number of sounds in folder, add 1
+	# create a grid of SoundCtrlRects based on the number of sounds in folder + 1
 
 	ctrlNumY = 0
 
-	for ctrlNumX in range(3):
+	for ctrlNumY in range(int((len(sound_list) / 3) + 1)):
 
 		# use 0,0 box coordinate system
 		# boxes are counted as 0 , 2 -> 3 boxes to the right
-		# 2 , 3 -> 3 boxes down and 4 boxes right
-		drawSoundCtrlRect(ctrlNumX, ctrlNumY)
+		# 2 , 3 -> 3 boxes down [0,1,2] and 4 boxes right [0,1,2,3]
+
+		for ctrlNumX in range(3):
+			drawSoundCtrlRect(ctrlNumX, ctrlNumY)
 
 # main area to run program like with a C function
 if __name__ == '__main__':
